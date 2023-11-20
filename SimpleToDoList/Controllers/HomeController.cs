@@ -41,6 +41,17 @@ namespace SimpleToDoList.Controllers
                 
             return Redirect("/");  
         }
+        [HttpGet]
+        public IActionResult Completed() {
+
+
+            List<ToDoTask> tasks = new List<ToDoTask>();
+            using (ToDoListContext db = new ToDoListContext())
+            {
+                tasks = db.ToDoList.Where(t => t.Complete).OrderBy(t => t.CreateDate).ToList();
+            }
+            return View(tasks);
+        }
 
         //[HttpDelete]
         //public IActionResult Index(int Id)

@@ -1,0 +1,41 @@
+﻿@using SimpleToDoList.Models
+@model IEnumerable<ToDoTask>
+@{
+    ViewData["Title"] = "Completed";
+}
+
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+
+                        <h4 class="text-center my-3 pb-3">To Do App</h4>
+
+                        <table class="table mb-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Todo Complete task</th>
+                                    <th scope="col">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var task in Model)
+                                {
+                                    <tr>
+                                        <td>@task.Task</td>
+                                        <td>@task.CreateDate</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
