@@ -18,6 +18,7 @@
                                 <tr>
                                     <th scope="col">Todo Complete task</th>
                                     <th scope="col">Date</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,6 +27,9 @@
                                     <tr>
                                         <td>@task.Task</td>
                                         <td>@task.CreateDate</td>
+                                        <td>
+                                            <button onclick="window.location.href='/home/completed?id=@task.Id'" type="submit" class="btn btn-danger ms-1">Delete</button>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>

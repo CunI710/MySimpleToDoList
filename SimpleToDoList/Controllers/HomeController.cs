@@ -18,7 +18,7 @@ namespace SimpleToDoList.Controllers
                     ToDoTask? task = db.ToDoList.FirstOrDefault(t => t.Id == id);
                     if (task != null)
                     {
-                        db.ToDoList.Remove(task);
+                        task.Complete = true;
                         db.SaveChanges();
                     }
 
@@ -42,16 +42,26 @@ namespace SimpleToDoList.Controllers
             return Redirect("/");  
         }
         [HttpGet]
-        public IActionResult Completed() {
+        public IActionResult Completed(int id) {
 
 
             List<ToDoTask> tasks = new List<ToDoTask>();
             using (ToDoListContext db = new ToDoListContext())
             {
+                if(id != 0)
+                {
+                    ToDoTask? task = db.ToDoList.FirstOrDefault(t=>t.Id == id);
+                    if(task != null)
+                    {
+                        db.Remove(task);
+                        db.SaveChanges();
+                    }
+                }
                 tasks = db.ToDoList.Where(t => t.Complete).OrderBy(t => t.CreateDate).ToList();
             }
             return View(tasks);
         }
+        
 
         //[HttpDelete]
         //public IActionResult Index(int Id)
